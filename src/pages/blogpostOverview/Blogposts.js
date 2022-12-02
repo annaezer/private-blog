@@ -1,13 +1,14 @@
 import React from 'react';
-import {useParams, Link} from "react-router-dom";
-import posts from "../data/posts.json";
+import {Link} from "react-router-dom";
+import posts from "../../data/posts.json";
+import './Blogposts.css';
 
 console.log (posts);
 
 function Blogposts() {
 
     return (
-        <>
+        <main>
             <h1>Blog overzichtspagina</h1>
             <p>Aantal posts: {posts.length}</p>
             <ul className="blog-overview">
@@ -19,7 +20,7 @@ function Blogposts() {
                     );
                 } ) }
             </ul>
-        </>
+        </main>
     );
 };
 

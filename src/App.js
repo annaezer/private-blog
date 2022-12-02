@@ -1,25 +1,27 @@
 import React, {useState} from 'react';
 import './App.css';
-import {Route, Routes} from "react-router-dom";
-import Home from "./pages/Home";
-import Blogposts from "./pages/Blogposts";
-import Login from "./pages/Login";
-import BlogPost from "./pages/Blogpost";
-import Navigation from "./pages/Navigation";
-import Blogpost from "./pages/Blogpost";
+import {Navigate, Route, Routes} from "react-router-dom";
+import Home from "./pages/home/Home";
+import Blogposts from "./pages/blogpostOverview/Blogposts";
+import Login from "./pages/login/Login";
+import Navigation from "./components/navigation/Navigation";
+import Blogpost from "./pages/blogpost/Blogpost";
+import PageNotFound from "./pages/pageNotFound/PageNotFound";
 
 function App() {
-    // We houden in de state bij of iemand is "ingelogd" (simpele versie)
+
     const [isAuthenticated, toggleIsAuthenticated] = useState(false);
+    console.log(isAuthenticated);
 
     return (
         <>
-            <Navigation/>
+            <Navigation auth={isAuthenticated} toggleAuth={toggleIsAuthenticated}/>
             <Routes>
                 <Route path="/" element={<Home/>}/>
-                <Route path="/login" element={<Login/>}/>
-                <Route path="/blogposts" element={<Blogposts/>}/>
-                <Route path="/blogposts/:blogId" element={<Blogpost/>}/>
+                <Route path="/login" element={<Login auth={isAuthenticated} toggleAuth={toggleIsAuthenticated} />}/>
+                <Route path="/blogposts" element={isAuthenticated ? <Blogposts/> : <Navigate to="/"/> }/>
+                <Route path="/blogposts/:blogId" element={isAuthenticated ? <Blogpost/> : <Navigate to="/"/>}/>
+                <Route path="*" element={<PageNotFound/>}/>
             </Routes>
         </>
     );

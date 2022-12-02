@@ -1,20 +1,17 @@
 import React from 'react';
 import {useParams, Link} from "react-router-dom";
-import posts from "../data/posts.json"
+import posts from "../../data/posts.json"
+import './Blogpost.css';
 
 function Blogpost() {
     const {blogId} = useParams()
 
-    const currentBlog = posts.find((post) => {
-        return post.id === blogId;
-    });
-
     return (
         <>
             <article>
-                <h1>{currentBlog.title}</h1>
-                <h3>{currentBlog.date}</h3>
-                <p>{currentBlog.content}</p>
+                <h1>{posts[blogId].title}</h1>
+                <h3>{posts[blogId].date}</h3>
+                <p>{posts[blogId].content}</p>
             </article>
             <article>
                 <Link to="/">Terug naar Home</Link>

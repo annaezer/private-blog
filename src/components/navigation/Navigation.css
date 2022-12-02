@@ -1,0 +1,27 @@
+nav ul a,
+nav ul a:visited {
+    text-decoration: none;
+}
+
+.active {
+    border-bottom: 1px solid black;
+}
+
+.default {
+    border-bottom: 1px solid transparent;
+}
+
+ul {
+    list-style-type: none;
+}
+nav {
+    background-color: darkorange;
+}
+nav ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    flex-basis: 200px;
+    padding: 40px;
+    margin: 0 10px 10px 10px;
+}
